@@ -25,18 +25,7 @@
             --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
         }
 
-        .dark-theme {
-            --primary-color: #e74c3c;
-            --primary-hover: #c0392b;
-            --secondary-color: #f1c40f;
-            --secondary-hover: #d4ac0d;
-            --bg-body: #121212;
-            --bg-card: #1e1e1e;
-            --text-main: #ecf0f1;
-            --text-muted: #bdc3c7;
-            --border-color: #2c3e50;
-            --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-        }
+
 
         body {
             font-family: 'Be Vietnam Pro', sans-serif;
@@ -201,10 +190,6 @@
             border-radius: 12px;
             backdrop-filter: blur(2px);
         }
-        .dark-theme .loading-overlay {
-            background: rgba(30, 30, 30, 0.7);
-        }
-
         /* Filter Pills */
         .filter-badge {
             background-color: rgba(179, 0, 6, 0.1);
@@ -216,10 +201,6 @@
             margin-right: 8px;
             display: inline-flex;
             align-items: center;
-        }
-        .dark-theme .filter-badge {
-            background-color: rgba(231, 76, 60, 0.2);
-            color: var(--primary-color);
         }
 
         /* Print styling for Báo cáo */
@@ -276,10 +257,6 @@
                     </li>
                 </ul>
                 <div class="d-flex align-items-center text-white">
-                    <div class="form-check form-switch me-3">
-                        <input class="form-check-switch form-check-input" type="checkbox" role="switch" id="themeToggle">
-                        <label class="form-check-label text-white small" for="themeToggle"><i class="bi bi-moon-fill"></i> Dark Mode</label>
-                    </div>
                     <span id="connectionBadge" class="badge bg-success"><i class="bi bi-cloud-check-fill"></i> Local Mock</span>
                 </div>
             </div>
@@ -786,12 +763,26 @@ let genderChartInstance = null;
 
 // Mock Data for local testing and fallback
 const mockData = [
-    { maDangVien: "ĐV001", hoTen: "Nguyễn Văn A", ngaySinh: "1985-03-15", gioiTinh: "Nam", queQuan: "Hà Nội", trinhDoChuyenMon: "Thạc sĩ Kỹ thuật", chucVu: "Chuyên viên", donViCongTac: "Trung tâm Khai thác Ga Nội Bài" },
-    { maDangVien: "ĐV002", hoTen: "Trần Thị B", ngaySinh: "1990-11-20", gioiTinh: "Nữ", queQuan: "Bắc Ninh", trinhDoChuyenMon: "Cử nhân Kinh tế", chucVu: "Phó trưởng phòng", donViCongTac: "Văn phòng Đảng - Đoàn thể" },
-    { maDangVien: "ĐV003", hoTen: "Lê Văn C", ngaySinh: "1975-01-01", gioiTinh: "Nam", queQuan: "Hà Nội", trinhDoChuyenMon: "Cử nhân Luật", chucVu: "Trưởng phòng", donViCongTac: "Trung tâm Điều hành Sân bay" },
-    { maDangVien: "ĐV004", hoTen: "Phạm Thị D", ngaySinh: "1988-07-24", gioiTinh: "Nữ", queQuan: "Nam Định", trinhDoChuyenMon: "Thạc sĩ Quản trị", chucVu: "Chuyên viên chính", donViCongTac: "Văn phòng Đảng - Đoàn thể" },
-    { maDangVien: "ĐV005", hoTen: "Hoàng Văn E", ngaySinh: "1993-05-12", gioiTinh: "Nam", queQuan: "Nghệ An", trinhDoChuyenMon: "Kỹ sư Công nghệ thông tin", chucVu: "Chuyên viên", donViCongTac: "Trung tâm Khai thác Ga Nội Bài" },
-    { maDangVien: "ĐV006", hoTen: "Đỗ Minh F", ngaySinh: "1982-12-05", gioiTinh: "Nam", queQuan: "Hải Phòng", trinhDoChuyenMon: "Cử nhân Ngoại ngữ", chucVu: "Đội trưởng", donViCongTac: "Trung tâm An ninh hàng không" }
+    { maDangVien: "ĐV001", hoTen: "Nguyễn Văn An", ngaySinh: "1985-03-15", gioiTinh: "Nam", queQuan: "Hà Nội", trinhDoChuyenMon: "Thạc sĩ Kỹ thuật hàng không", chucVu: "Trưởng phòng kỹ thuật", donViCongTac: "Trung tâm Kỹ thuật Sân bay" },
+    { maDangVien: "ĐV002", hoTen: "Trần Thị Bích", ngaySinh: "1990-11-20", gioiTinh: "Nữ", queQuan: "Bắc Ninh", trinhDoChuyenMon: "Cử nhân Kinh tế", chucVu: "Phó trưởng phòng", donViCongTac: "Văn phòng Đảng - Đoàn thể" },
+    { maDangVien: "ĐV003", hoTen: "Lê Minh Cường", ngaySinh: "1975-01-01", gioiTinh: "Nam", queQuan: "Hà Nội", trinhDoChuyenMon: "Cử nhân Luật", chucVu: "Trưởng phòng pháp chế", donViCongTac: "Trung tâm Điều hành Sân bay" },
+    { maDangVien: "ĐV004", hoTen: "Phạm Thị Dung", ngaySinh: "1988-07-24", gioiTinh: "Nữ", queQuan: "Nam Định", trinhDoChuyenMon: "Thạc sĩ Quản trị Kinh doanh", chucVu: "Chuyên viên chính", donViCongTac: "Văn phòng Đảng - Đoàn thể" },
+    { maDangVien: "ĐV005", hoTen: "Hoàng Văn Em", ngaySinh: "1993-05-12", gioiTinh: "Nam", queQuan: "Nghệ An", trinhDoChuyenMon: "Kỹ sư Công nghệ thông tin", chucVu: "Chuyên viên CNTT", donViCongTac: "Trung tâm Khai thác Ga Nội Bài" },
+    { maDangVien: "ĐV006", hoTen: "Đỗ Thị Phương", ngaySinh: "1982-12-05", gioiTinh: "Nữ", queQuan: "Hải Phòng", trinhDoChuyenMon: "Cử nhân Ngoại ngữ tiếng Anh", chucVu: "Phiên dịch viên", donViCongTac: "Trung tâm An ninh hàng không" },
+    { maDangVien: "ĐV007", hoTen: "Vũ Đức Giang", ngaySinh: "1979-08-30", gioiTinh: "Nam", queQuan: "Hà Nội", trinhDoChuyenMon: "Tiến sĩ Kỹ thuật", chucVu: "Giám đốc Trung tâm", donViCongTac: "Trung tâm Kỹ thuật Sân bay" },
+    { maDangVien: "ĐV008", hoTen: "Ngô Thị Hoa", ngaySinh: "1991-02-14", gioiTinh: "Nữ", queQuan: "Thanh Hóa", trinhDoChuyenMon: "Thạc sĩ Tài chính - Kế toán", chucVu: "Kế toán trưởng", donViCongTac: "Phòng Tài chính - Kế toán" },
+    { maDangVien: "ĐV009", hoTen: "Đinh Văn Hùng", ngaySinh: "1983-06-18", gioiTinh: "Nam", queQuan: "Vĩnh Phúc", trinhDoChuyenMon: "Cử nhân Hàng không", chucVu: "Kiểm soát viên không lưu", donViCongTac: "Trung tâm Điều hành Sân bay" },
+    { maDangVien: "ĐV010", hoTen: "Bùi Thị Lan", ngaySinh: "1995-09-03", gioiTinh: "Nữ", queQuan: "Hà Nam", trinhDoChuyenMon: "Cử nhân Quản trị Nhân lực", chucVu: "Chuyên viên HR", donViCongTac: "Phòng Tổ chức - Nhân sự" },
+    { maDangVien: "ĐV011", hoTen: "Trịnh Công Minh", ngaySinh: "1980-04-22", gioiTinh: "Nam", queQuan: "Thái Bình", trinhDoChuyenMon: "Thạc sĩ An ninh hàng không", chucVu: "Đội trưởng an ninh", donViCongTac: "Trung tâm An ninh hàng không" },
+    { maDangVien: "ĐV012", hoTen: "Lý Thị Ngọc", ngaySinh: "1987-12-11", gioiTinh: "Nữ", queQuan: "Phú Thọ", trinhDoChuyenMon: "Cử nhân Điều dưỡng", chucVu: "Y tá trưởng", donViCongTac: "Phòng Y tế - An toàn" },
+    { maDangVien: "ĐV013", hoTen: "Đặng Quang Phúc", ngaySinh: "1976-10-08", gioiTinh: "Nam", queQuan: "Hà Nội", trinhDoChuyenMon: "Thạc sĩ Quản lý Nhà nước", chucVu: "Phó Giám đốc", donViCongTac: "Ban Giám đốc" },
+    { maDangVien: "ĐV014", hoTen: "Cao Thị Quỳnh", ngaySinh: "1992-03-29", gioiTinh: "Nữ", queQuan: "Hưng Yên", trinhDoChuyenMon: "Cử nhân Truyền thông", chucVu: "Chuyên viên PR", donViCongTac: "Phòng Quan hệ Công chúng" },
+    { maDangVien: "ĐV015", hoTen: "Phan Văn Sơn", ngaySinh: "1984-07-16", gioiTinh: "Nam", queQuan: "Bắc Giang", trinhDoChuyenMon: "Kỹ sư Điện - Điện tử", chucVu: "Kỹ sư trưởng", donViCongTac: "Trung tâm Kỹ thuật Sân bay" },
+    { maDangVien: "ĐV016", hoTen: "Hoàng Thị Thu", ngaySinh: "1989-01-05", gioiTinh: "Nữ", queQuan: "Ninh Bình", trinhDoChuyenMon: "Thạc sĩ Kế toán Kiểm toán", chucVu: "Kiểm toán nội bộ", donViCongTac: "Phòng Tài chính - Kế toán" },
+    { maDangVien: "ĐV017", hoTen: "Nguyễn Tiến Uy", ngaySinh: "1978-11-19", gioiTinh: "Nam", queQuan: "Hà Nội", trinhDoChuyenMon: "Tiến sĩ Luật", chucVu: "Giám đốc điều hành", donViCongTac: "Ban Giám đốc" },
+    { maDangVien: "ĐV018", hoTen: "Lê Thị Vân", ngaySinh: "1994-06-27", gioiTinh: "Nữ", queQuan: "Hải Dương", trinhDoChuyenMon: "Cử nhân Tâm lý học", chucVu: "Chuyên viên đào tạo", donViCongTac: "Phòng Tổ chức - Nhân sự" },
+    { maDangVien: "ĐV019", hoTen: "Dương Hữu Xuyên", ngaySinh: "1986-09-14", gioiTinh: "Nam", queQuan: "Thái Nguyên", trinhDoChuyenMon: "Cử nhân Hàng không Dân dụng", chucVu: "Nhân viên phục vụ mặt đất", donViCongTac: "Trung tâm Khai thác Ga Nội Bài" },
+    { maDangVien: "ĐV020", hoTen: "Mai Thị Yến", ngaySinh: "1991-04-20", gioiTinh: "Nữ", queQuan: "Quảng Ninh", trinhDoChuyenMon: "Thạc sĩ Quản lý môi trường", chucVu: "Chuyên viên môi trường", donViCongTac: "Phòng Quan hệ Công chúng" }
 ];
 
 let parsedExcelData = []; // Cache for current excel records to import
@@ -815,7 +806,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set Report date
     document.getElementById('reportMetaInfo').innerText = "Ngày xuất báo cáo: " + new Date().toLocaleDateString('vi-VN');
 
-    setupTheme();
     setupNavigation();
     setupFilters();
     setupExcelImport();
@@ -866,28 +856,7 @@ function setupNavigation() {
     switchTab('dashboard');
 }
 
-// Setup Theme Switcher
-function setupTheme() {
-    const themeToggle = document.getElementById('themeToggle');
-    const savedTheme = localStorage.getItem('theme');
-    
-    if (savedTheme === 'dark') {
-        document.body.classList.add('dark-theme');
-        themeToggle.checked = true;
-    }
-    
-    themeToggle.addEventListener('change', function() {
-        if (this.checked) {
-            document.body.classList.add('dark-theme');
-            localStorage.setItem('theme', 'dark');
-        } else {
-            document.body.classList.remove('dark-theme');
-            localStorage.setItem('theme', 'light');
-        }
-        // Redraw charts to update text colors in dark mode
-        renderCharts();
-    });
-}
+
 
 // ==============================================================
 // DATA FETCH & BINDING
